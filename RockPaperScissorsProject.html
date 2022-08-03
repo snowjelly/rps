@@ -61,19 +61,19 @@
                 if (playerSelection === 'rock') {
                     if (computerSelection === 'rock') {
                         ties++;
-                        if (result === "tie") {
-                            streak++;
-                        } else if (result != "") {
-                            streak = 0;
+                        if (result != "" && result != "tie") { //checks previous set result value. if it's the same increment the currentStreak, otherwise set it to 0.
+                            currentStreak = 0;
+                        } else {
+                            currentStreak++;
                         }
                         result = "tie";
-                        return "The computer chose " + computerSelection + ". You " + result + ". You now have a " + result + " streak of " + streak;
+                        return "The computer chose " + computerSelection + ". You " + result + ". You now have a " + result + " streak of " + currentStreak;
 
                     }
                     if (computerSelection === 'paper') {
                         computerWins++;
                         result = "lose"
-                        return "The computer chose " + computerSelection + ". You " + result + ". You now have a " + result + " streak of " + computerWins;
+                        return "The computer chose " + computerSelection + ". You " + result + ". You now have a " + result + " streak of " + currentStreak;
                     }
                     if (computerSelection === 'scissors') {
                         playerWins++;
