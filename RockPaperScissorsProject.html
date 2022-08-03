@@ -16,6 +16,7 @@
             let tieStreak = 0;
             let winStreak = 0;
             let loseStreak = 0;
+            let prevResult = "";
             let result = "";
             let resultString = "";
 
@@ -57,105 +58,101 @@
                 return computerSelection;
             }
 
+            function logVariables() {
+                console.log("result = " + result);
+                console.log("prevResult = " + prevResult);
+                console.log("winStreak = " + winStreak);
+                console.log("loseStreak = " + loseStreak);
+                console.log("tieStreak = " + tieStreak);
+                console.log("currentStreak = " + currentStreak);
 
+
+            }
+
+            function checkStreak() {
+                    console.log(logVariables());
+                        if (result != "" && result != prevResult) { //if the result isnt the same as the previous and isnt null. then increment currentStreak. then set currentStreak to the corresponding result value
+                            currentStreak = 1;
+                        } else {
+                            currentStreak++;
+                            if (prevResult === "win") {
+                                winStreak = currentStreak;
+                            } else if (prevResult === "lose") {
+                                loseStreak = currentStreak;
+                            } else if (prevResult === "tie") {
+                                tieStreak = currentStreak;
+                            }
+                        }
+            }
 
             function playRound(playerSelection, computerSelection) {
                 //Game logic
                 if (playerSelection === 'rock') {
                     if (computerSelection === 'rock') {
                         ties++;
-                        if (result != "" && result != "tie") { //checks previous set result value. if it's the same increment the currentStreak, otherwise set it to 0.
-                            currentStreak = 1;
-                        } else {
-                            currentStreak++;
-                            tieStreak = currentStreak;
-                        }
+                        checkStreak();
                         result = "tie";
+                        prevResult = result;
                         return "The computer chose " + computerSelection + ". You " + result + ". You now have a " + result + " streak of " + currentStreak;
-
                     }
                     if (computerSelection === 'paper') {
                         computerWins++;
-                        if (result != "" && result != "lose") { //checks previous set result value. if it's the same increment the currentStreak, otherwise set it to 0.
-                            currentStreak = 1;
-                        } else {
-                            currentStreak++;
-                        }
+                        checkStreak();
                         result = "lose"
+                        prevResult = result;
                         return "The computer chose " + computerSelection + ". You " + result + ". You now have a " + result + " streak of " + currentStreak;
                     }
                     if (computerSelection === 'scissors') {
                         playerWins++;
-                        if (result != "" && result != "win") { //checks previous set result value. if it's the same increment the currentStreak, otherwise set it to 0.
-                            currentStreak = 1;
-                        } else {
-                            currentStreak++;
-                        }
+                        checkStreak();
                         result = "win";
+                        prevResult = result;
                         return "The computer chose " + computerSelection + ". You " + result + ". You now have a " + result + " streak of " + currentStreak;
                     }
                 }
                 else if (playerSelection === 'paper') {
                     if (computerSelection === 'rock') {
                         playerWins++;
-                        if (result != "" && result != "win") { //checks previous set result value. if it's the same increment the currentStreak, otherwise set it to 0.
-                            currentStreak = 1;
-                        } else {
-                            currentStreak++;
-                        }
+                        checkStreak();
                         result = "win";
+                        prevResult = result;
                         return "The computer chose " + computerSelection + ". You " + result + ". You now have a " + result + " streak of " + currentStreak;
                     }
                     if (computerSelection === 'paper') {
                         ties++;
-                        if (result != "" && result != "tie") { //checks previous set result value. if it's the same increment the currentStreak, otherwise set it to 0.
-                            currentStreak = 1;
-                        } else {
-                            currentStreak++;
-                        }
+                        checkStreak();
                         result = "tie";
+                        prevResult = result;
                         return "The computer chose " + computerSelection + ". You " + result + ". You now have a " + result + " streak of " + currentStreak;
                     }
                     if (computerSelection === 'scissors') {
                         computerWins++;
-                        if (result != "" && result != "lose") { //checks previous set result value. if it's the same increment the currentStreak, otherwise set it to 0.
-                            currentStreak = 1;
-                        } else {
-                            currentStreak++;
-                        }
+                        checkStreak();
                         result = "lose"
+                        prevResult = result;
                         return "The computer chose " + computerSelection + ". You " + result + ". You now have a " + result + " streak of " + currentStreak;
                     }
                 }
                 else if (playerSelection === 'scissors') {
                     if (computerSelection === 'rock') {
                         computerWins++;
-                        if (result != "" && result != "lose") { //checks previous set result value. if it's the same increment the currentStreak, otherwise set it to 0.
-                            currentStreak = 1;
-                        } else {
-                            currentStreak++;
-                        }
+                        checkStreak();
                         result = "lose"
+                        prevResult = result;
                         return "The computer chose " + computerSelection + ". You " + result + ". You now have a " + result + " streak of " + currentStreak;
                     }
                     if (computerSelection === 'paper') {
                         playerWins++;
-                        if (result != "" && result != "win") { //checks previous set result value. if it's the same increment the currentStreak, otherwise set it to 0.
-                            currentStreak = 1;
-                        } else {
-                            currentStreak++;
-                        }
+                        checkStreak();
                         result = "win";
+                        prevResult = result;
                         return "The computer chose " + computerSelection + ". You " + result + ". You now have a " + result + " streak of " + currentStreak;
                     }
                     if (computerSelection === 'scissors') {
                         ties++;
-                        if (result != "" && result != "tie") { //checks previous set result value. if it's the same increment the currentStreak, otherwise set it to 0.
-                            currentStreak = 1;
-                        } else {
-                            currentStreak++;
-                        }
+                        checkStreak();
                         result = "tie";
+                        prevResult = result;
                         return "The computer chose " + computerSelection + ". You " + result + ". You now have a " + result + " streak of " + currentStreak;
                     }
                 }
