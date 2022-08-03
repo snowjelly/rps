@@ -25,7 +25,8 @@
             const tieString = "You tied.";
             const invalidString = "Invalid string. Please refresh the page and enter 'rock', 'paper', or 'scissors'";
 
-            
+            // right now i want it to print out your highest streak at the end of the game
+            // future additions could include making a leaderboard, UI, and then eventually online multiplayer.
             function game(gameCount) {
 
                 for (let i = 0; i < gameCount; i++) {
@@ -56,6 +57,8 @@
                 return computerSelection;
             }
 
+
+
             function playRound(playerSelection, computerSelection) {
                 //Game logic
                 if (playerSelection === 'rock') {
@@ -65,6 +68,7 @@
                             currentStreak = 1;
                         } else {
                             currentStreak++;
+                            tieStreak = currentStreak;
                         }
                         result = "tie";
                         return "The computer chose " + computerSelection + ". You " + result + ". You now have a " + result + " streak of " + currentStreak;
