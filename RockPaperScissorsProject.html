@@ -18,12 +18,7 @@
             let loseStreak = 0;
             let prevResult = "";
             let result = "";
-            let resultString = "";
 
-
-            const winString = "You won!";
-            const loseString = "You lost. Try again.";
-            const tieString = "You tied.";
             const invalidString = "Invalid string. Please refresh the page and enter 'rock', 'paper', or 'scissors'";
 
             // right now i want it to print out your highest streak at the end of the game
@@ -71,7 +66,18 @@
             }
 
             function checkStreak() {
-                        if (prevResult != "" && result != prevResult) { //if the result isnt the same as the previous and isnt null. then increment currentStreak. then set currentStreak to the corresponding result value
+                if (result === "win" && winStreak === 0) {
+                    winStreak = 1;
+                }
+                if (result === "lose" && loseStreak === 0) {
+                    loseStreak = 1;
+                }
+                if (result === "tie" && tieStreak === 0) {
+                    tieStreak = 1;
+                }
+                        //if prevResult is different from the latest result reset the streak counter. otherwise increment currentStreak and update
+                        //the various max streakcounters
+                        if (prevResult != "" && result != prevResult) { 
                             currentStreak = 1;
                         } else {
                             currentStreak++;
