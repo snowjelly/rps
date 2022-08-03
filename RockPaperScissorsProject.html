@@ -6,6 +6,7 @@
     </head>
     <body>
         <script>
+            let gameCount = parseInt(prompt("How many games would you like to play?"));
             let playerSelection = prompt("Enter 'rock', 'paper', or 'scissors'");
             const winString = "You won!";
             const loseString = "You lost. Try again.";
@@ -13,7 +14,10 @@
             const computerSelection = getComputerChoice();
             const invalidString = "Invalid string. Please refresh the page and enter 'rock', 'paper', or 'scissors'";
             
-
+            function game(gameCount) {
+                console.log(playRound(playerSelection, computerSelection));
+            }
+            game(gameCount);
             
             function getComputerChoice() {
                 let computerSelection = Math.floor(Math.random()*3);
@@ -28,9 +32,11 @@
                 if (computerSelection === 2) {
                     computerSelection = 'scissors';
                 }
+
+                return computerSelection;
             }
 
-            function playRound([playerSelection, computerSelection]) {
+            function playRound(playerSelection, computerSelection) {
                 //Game logic
                 if (playerSelection === 'rock') {
                     if (computerSelection === 'rock') {
