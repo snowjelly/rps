@@ -7,15 +7,31 @@
     <body>
         <script>
             let gameCount = parseInt(prompt("How many games would you like to play?"));
-            let playerSelection = prompt("Enter 'rock', 'paper', or 'scissors'");
+            let playerSelection = "";
+            let computerSelection = "";
+            let playerWins = 0;
+            let computerWins = 0;
+            let ties = 0;
+            let streak = "";
+            let result = "";
+            let resultString = "";
+
+
             const winString = "You won!";
             const loseString = "You lost. Try again.";
             const tieString = "You tied.";
-            const computerSelection = getComputerChoice();
             const invalidString = "Invalid string. Please refresh the page and enter 'rock', 'paper', or 'scissors'";
+
             
             function game(gameCount) {
-                console.log(playRound(playerSelection, computerSelection));
+
+                for (let i = 0; i < gameCount; i++) {
+                    playerSelection = prompt("Enter 'rock', 'paper', or 'scissors'");
+                    computerSelection = getComputerChoice();
+
+                    //console.log(playRound(playerSelection, computerSelection));
+                    console.log(playRound('rock','scissors'));
+                }
             }
             game(gameCount);
             
@@ -40,44 +56,60 @@
                 //Game logic
                 if (playerSelection === 'rock') {
                     if (computerSelection === 'rock') {
-                        //console.log("The computer chose " + computerSelection);
-                        return tieString;
+                        ties++;
+                        result = "tie";
+                        return "The computer chose " + computerSelection + ". You " + result + ". You now have a " + result + " streak of " + ties;
+
                     }
                     if (computerSelection === 'paper') {
-                        //console.log("The computer chose " + computerSelection);
-                        return loseString;
+                        computerWins++;
+                        result = "lose"
+                        return "The computer chose " + computerSelection + ". You " + result + ". You now have a " + result + " streak of " + computerWins;
                     }
                     if (computerSelection === 'scissors') {
-                        //console.log("The computer chose " + computerSelection);
-                        return winString;
+                        playerWins++;
+                        result = "win";
+                        return "The computer chose " + computerSelection + ". You " + result + ". You now have a " + result + " streak of " + playerWins;
                     }
                 }
                 else if (playerSelection === 'paper') {
                     if (computerSelection === 'rock') {
                         //console.log("The computer chose " + computerSelection);
-                        return winString;
+                        playerWins++;
+                        result = "win";
+                        return "The computer chose " + computerSelection + ". You " + result + ". You now have a " + result + " streak of " + playerWins;
                     }
                     if (computerSelection === 'paper') {
                         //console.log("The computer chose " + computerSelection);
-                        return tieString;
+                        ties++;
+                        result = "tie";
+                        return "The computer chose " + computerSelection + ". You " + result + ". You now have a " + result + " streak of " + ties;
                     }
                     if (computerSelection === 'scissors') {
                         //console.log("The computer chose " + computerSelection);
-                        return loseString;
+                        computerWins++;
+                        result = "lose"
+                        return "The computer chose " + computerSelection + ". You " + result + ". You now have a " + result + " streak of " + computerWins;
                     }
                 }
                 else if (playerSelection === 'scissors') {
                     if (computerSelection === 'rock') {
                         //console.log("The computer chose " + computerSelection);
-                        return loseString;
+                        computerWins++;
+                        result = "lose"
+                        return "The computer chose " + computerSelection + ". You " + result + ". You now have a " + result + " streak of " + computerWins;
                     }
                     if (computerSelection === 'paper') {
                         //console.log("The computer chose " + computerSelection);
-                        return winString;
+                        playerWins++;
+                        result = "win";
+                        return "The computer chose " + computerSelection + ". You " + result + ". You now have a " + result + " streak of " + playerWins;
                     }
                     if (computerSelection === 'scissors') {
                         //console.log("The computer chose " + computerSelection);
-                        return tieString;
+                        ties++;
+                        result = "tie";
+                        return "The computer chose " + computerSelection + ". You " + result + ". You now have a " + result + " streak of " + ties;
                     }
                 }
                 else {
