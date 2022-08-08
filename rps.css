@@ -34,18 +34,15 @@ h3 {
 }
 
 .buttons {
-  
   height: 30%;
-}
-
-.button {
-  padding: 2rem;
 }
 
 .buttons > * {
   flex: 1;
   font-size: 2rem;
-  border: 1px solid #121212;
+  border: 1rem solid darkgrey;
+  box-shadow: 5px 10px whitesmoke;
   background-color: whitesmoke;
   padding: 2rem;
+  margin-inline: 3rem;
 }
