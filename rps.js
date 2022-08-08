@@ -15,7 +15,7 @@ let result = "";
 let rock = "";
 let paper = "";
 let scissors = "";
-let play = true;
+let play = false;
 
 const invalidString = "Invalid string. Please refresh the page and enter 'rock', 'paper', or 'scissors'";
 

@@ -1,7 +1,30 @@
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+
+body {
+  background-color: #121212;
+}
+
+h3 {
+  color: whitesmoke;
+  font-size: 2rem;
+  border: 1px solid whitesmoke;
+}
+
 .title > * {
   display: flex;
   justify-content: center;
   align-content: center;
+  background-color: whitesmoke;
+  
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
 }
 
 .content > * {
@@ -10,3 +33,19 @@
   align-content: center;
 }
 
+.buttons {
+  
+  height: 30%;
+}
+
+.button {
+  padding: 2rem;
+}
+
+.buttons > * {
+  flex: 1;
+  font-size: 2rem;
+  border: 1px solid #121212;
+  background-color: whitesmoke;
+  padding: 2rem;
+}
