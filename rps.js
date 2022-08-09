@@ -12,10 +12,8 @@ let totalRounds = 0;
 let totalGames = 0;
 let prevResult = "";
 let result = "";
-let rock = "";
-let paper = "";
-let scissors = "";
-let play = false;
+
+
 
 const buttonDiv = document.querySelector('.buttons');
 const rockBtn = document.createElement('button');
@@ -25,7 +23,6 @@ const promptText = document.querySelector('.prompt h3');
 const promptBtn = document.querySelector('.prompt button');
 const promptParent = document.querySelector('.prompt');
 
-const invalidString = "Invalid string. Please refresh the page and enter 'rock', 'paper', or 'scissors'";
 
 
 
@@ -64,42 +61,33 @@ const gameStart = (e) => {
   }
 }
 
+const gameEnd = () => { //removes choice buttons, displays result, and re-adds the start button
+  buttonDiv.removeChild(rockBtn);
+  buttonDiv.removeChild(paperBtn);
+  buttonDiv.removeChild(scissorsBtn);
+  promptText.textContent = playRound(getComputerChoice()) + ". Would you like to play again?";
+  promptParent.appendChild(promptBtn);
+  addStartButtonListener();
+}
 
 const playerChoice = (e) => {
   if (e.target.dataset.choice === "rock") {
-    play = true;
     playerSelection = "rock";
-    buttonDiv.removeChild(rockBtn);
-    buttonDiv.removeChild(paperBtn);
-    buttonDiv.removeChild(scissorsBtn);
-    promptText.textContent = playRound(getComputerChoice()) + ". Would you like to play again?";
-    promptParent.appendChild(promptBtn);
-    addStartButtonListener();
+    gameEnd();
     return console.log(playerSelection);
   } else if (e.target.dataset.choice === "paper") {
-    play = true;
     playerSelection = "paper";
-    buttonDiv.removeChild(rockBtn);
-    buttonDiv.removeChild(paperBtn);
-    buttonDiv.removeChild(scissorsBtn);
-    promptText.textContent = playRound(getComputerChoice()) + ". Would you like to play again?";
-    promptParent.appendChild(promptBtn);
-    addStartButtonListener();
+    gameEnd();
     return console.log(playerSelection);
   } else if (e.target.dataset.choice === "scissors") {
-    play = true;
     playerSelection = "scissors";
-    buttonDiv.removeChild(rockBtn);
-    buttonDiv.removeChild(paperBtn);
-    buttonDiv.removeChild(scissorsBtn);
-    promptText.textContent = playRound(getComputerChoice()) + ". Would you like to play again?";
-    promptParent.appendChild(promptBtn);
-    addStartButtonListener();
+    gameEnd();
     return console.log(playerSelection);
   } else {
     return console.log("ERROR");
   }
 }
+
 const addStartButtonListener = () => {
   const startButton = document.querySelector('.prompt button');
   startButton.addEventListener('click', gameStart, {
@@ -117,18 +105,15 @@ const addButtonListeners = () => {
 }
 
 
-
-
-
-function gameWinCheck() {
-    if (playerWins > computerWins && playerWins > ties) {
-        return "Overall..You won!";
-    } else if (computerWins > playerWins && computerWins > ties) {
-        return "Overall..You lost.."
-    } else {
-        return "Overall..You tied?.."
-    }
-}
+// function gameWinCheck() {
+//     if (playerWins > computerWins && playerWins > ties) {
+//         return "Overall..You won!";
+//     } else if (computerWins > playerWins && computerWins > ties) {
+//         return "Overall..You lost.."
+//     } else {
+//         return "Overall..You tied?.."
+//     }
+// }
 
 
 function getComputerChoice() {
@@ -149,25 +134,25 @@ function getComputerChoice() {
 }
 
 //future additions could include making a leaderboard, UI, and then eventually online multiplayer.
-function game() { 
-  totalRounds++;
-  console.log("In the " + totalRounds + " round(s) you played. You won " + playerWins + ", tied " + ties + ", and lost " + computerWins);
-  console.log("Highest winstreak: " + winStreak + " Highest losestreak: " + loseStreak + " Highest tiestreak: " + tieStreak);
-  console.log(gameWinCheck());
-}
+// function game() { 
+//   totalRounds++;
+//   console.log("In the " + totalRounds + " round(s) you played. You won " + playerWins + ", tied " + ties + ", and lost " + computerWins);
+//   console.log("Highest winstreak: " + winStreak + " Highest losestreak: " + loseStreak + " Highest tiestreak: " + tieStreak);
+//   console.log(gameWinCheck());
+// }
 
-function equalsIgnoringCase(text, other) { 
-return text.localeCompare(other, 'en', { sensitivity: 'base' }) === 0;
-}
+// function equalsIgnoringCase(text, other) { 
+// return text.localeCompare(other, 'en', { sensitivity: 'base' }) === 0;
+// }
 
-function logVariables() {
-    console.log("result = " + result);
-    console.log("prevResult = " + prevResult);
-    console.log("winStreak = " + winStreak);
-    console.log("loseStreak = " + loseStreak);
-    console.log("tieStreak = " + tieStreak);
-    console.log("currentStreak = " + currentStreak);
-}
+// function logVariables() {
+//     console.log("result = " + result);
+//     console.log("prevResult = " + prevResult);
+//     console.log("winStreak = " + winStreak);
+//     console.log("loseStreak = " + loseStreak);
+//     console.log("tieStreak = " + tieStreak);
+//     console.log("currentStreak = " + currentStreak);
+// }
 
 function checkStreak() { //there was a bug where streaks would say 0 after clearly completing a round.
     if (result === "win" && winStreak === 0) {
@@ -268,7 +253,7 @@ function playRound(computerSelection) {
     }
 }
 
-function getRoundsPlayed() {
-return console.log("You played " + totalRounds + " rounds and " + totalGames + " game(s) during this session.")
-}
+// function getRoundsPlayed() {
+// return console.log("You played " + totalRounds + " rounds and " + totalGames + " game(s) during this session.")
+// }
 
