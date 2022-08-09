@@ -45,7 +45,9 @@ const gameStart = (e) => {
       prompt.textContent = "Make your choice";
 
       const promptBtn = document.querySelector('.prompt button');
-      promptBtn.toggleAttribute('hidden');
+      
+      const removePromptBtn = document.querySelector('.prompt');
+      removePromptBtn.removeChild(promptBtn);
   
   
       buttonDiv.appendChild(rockBtn);
@@ -55,7 +57,7 @@ const gameStart = (e) => {
       addButtonListeners();
     return console.log(true);
   } else {
-    return false;
+    return console.log(false);
   }
 }
 
@@ -99,12 +101,12 @@ function gameWinCheck() {
 }
 
 // future additions could include making a leaderboard, UI, and then eventually online multiplayer.
-function game() { 
-    totalRounds++;
-    console.log("In the " + totalRounds + " round(s) you played. You won " + playerWins + ", tied " + ties + ", and lost " + computerWins);
-    console.log("Highest winstreak: " + winStreak + " Highest losestreak: " + loseStreak + " Highest tiestreak: " + tieStreak);
-    console.log(gameWinCheck());
-}
+// function game() { 
+//     totalRounds++;
+//     console.log("In the " + totalRounds + " round(s) you played. You won " + playerWins + ", tied " + ties + ", and lost " + computerWins);
+//     console.log("Highest winstreak: " + winStreak + " Highest losestreak: " + loseStreak + " Highest tiestreak: " + tieStreak);
+//     console.log(gameWinCheck());
+// }
 function getComputerChoice() {
     computerSelection = Math.floor(Math.random()*3);
 
