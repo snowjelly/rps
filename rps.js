@@ -25,7 +25,6 @@ const promptParent = document.querySelector('.prompt');
 const scoreboardParent = document.querySelector('.scoreboard');
 const scoreboard = document.createElement('h4');
 const streaks = document.createElement('h4');
-const score = document.createElement('h4');
 
 
 
@@ -77,11 +76,9 @@ const gameEnd = () => {
   promptText.textContent = playRound(getComputerChoice());
   
   //display scoreboard
-  score.textContent = ('Scoreboard: ');
-  scoreboardParent.appendChild(score);
-  scoreboard.textContent = '|Rounds = ' + totalRounds + '|Wins = ' + playerWins + '|Ties = ' + ties + '| Losses ' + computerWins + '|';
+  scoreboard.textContent = 'Score: | Rounds ' + totalRounds + ' | Wins ' + playerWins +  ' | Losses ' + computerWins + ' | Ties ' + ties + ' | ';
   scoreboardParent.appendChild(scoreboard);
-  streaks.textContent = "Highest winstreak " + winStreak + " Highest losestreak: " + loseStreak + " Highest tiestreak: " + tieStreak;
+  streaks.textContent = "Best streaks: " + "| Wins " + winStreak + " | Losses " + loseStreak + " | Ties " + tieStreak + " | ";
   scoreboardParent.appendChild(streaks);
   //re-add game start button
   promptParent.appendChild(promptBtn);
