@@ -60,6 +60,7 @@ const gameStart = (e) => {
     return console.log(false);
   }
 }
+computerSelection = getComputerChoice();
 
 const playerChoice = (e) => {
   if (e.target.dataset.choice === "rock") {
@@ -72,7 +73,75 @@ const playerChoice = (e) => {
     return console.log("ERROR");
   }
 }
-
+if (playerChoice === "rock") { //if player chooses rock
+  if (computerSelection === 'rock') {
+      prevResult = result;
+      ties++;
+      result = "tie";
+      checkStreak();
+      return "The computer chose " + computerSelection + ". You " + result + ". You now have a " + result + " streak of " + currentStreak;
+  }
+  if (computerSelection === 'paper') {
+      prevResult = result;
+      computerWins++;
+      result = "lose"
+      checkStreak();
+      return "The computer chose " + computerSelection + ". You " + result + ". You now have a " + result + " streak of " + currentStreak;
+  }
+  if (computerSelection === 'scissors') {
+      prevResult = result;
+      playerWins++;
+      result = "win";
+      checkStreak();
+      return "The computer chose " + computerSelection + ". You " + result + ". You now have a " + result + " streak of " + currentStreak;
+  }
+}
+else if (playerChoice === "paper") { //if player chooses paper
+  if (computerSelection === 'rock') {
+      prevResult = result;
+      playerWins++;
+      result = "win";
+      checkStreak();
+      return "The computer chose " + computerSelection + ". You " + result + ". You now have a " + result + " streak of " + currentStreak;
+  }
+  if (computerSelection === 'paper') {
+      prevResult = result;
+      ties++;
+      result = "tie";
+      checkStreak();
+      return "The computer chose " + computerSelection + ". You " + result + ". You now have a " + result + " streak of " + currentStreak;
+  }
+  if (computerSelection === 'scissors') {
+      prevResult = result;
+      computerWins++;
+      result = "lose"
+      checkStreak();
+      return "The computer chose " + computerSelection + ". You " + result + ". You now have a " + result + " streak of " + currentStreak;
+  }
+}
+else if (playerChoice === "scissors") { //if player chooses scissors
+  if (computerSelection === 'rock') {
+      prevResult = result;
+      computerWins++;
+      result = "lose"
+      checkStreak();
+      return "The computer chose " + computerSelection + ". You " + result + ". You now have a " + result + " streak of " + currentStreak;
+  }
+  if (computerSelection === 'paper') {
+      prevResult = result;
+      playerWins++;
+      result = "win";
+      checkStreak();
+      return "The computer chose " + computerSelection + ". You " + result + ". You now have a " + result + " streak of " + currentStreak;
+  }
+  if (computerSelection === 'scissors') {
+      prevResult = result;
+      ties++;
+      result = "tie";
+      checkStreak();
+      return "The computer chose " + computerSelection + ". You " + result + ". You now have a " + result + " streak of " + currentStreak;
+  }
+}
 const startButton = document.querySelector('.prompt button');
 startButton.addEventListener('click', gameStart, {
   once: true
@@ -100,13 +169,7 @@ function gameWinCheck() {
     }
 }
 
-// future additions could include making a leaderboard, UI, and then eventually online multiplayer.
-// function game() { 
-//     totalRounds++;
-//     console.log("In the " + totalRounds + " round(s) you played. You won " + playerWins + ", tied " + ties + ", and lost " + computerWins);
-//     console.log("Highest winstreak: " + winStreak + " Highest losestreak: " + loseStreak + " Highest tiestreak: " + tieStreak);
-//     console.log(gameWinCheck());
-// }
+
 function getComputerChoice() {
     computerSelection = Math.floor(Math.random()*3);
 
@@ -122,6 +185,14 @@ function getComputerChoice() {
     }
 
     return computerSelection;
+}
+
+//future additions could include making a leaderboard, UI, and then eventually online multiplayer.
+function game() { 
+  totalRounds++;
+  console.log("In the " + totalRounds + " round(s) you played. You won " + playerWins + ", tied " + ties + ", and lost " + computerWins);
+  console.log("Highest winstreak: " + winStreak + " Highest losestreak: " + loseStreak + " Highest tiestreak: " + tieStreak);
+  console.log(gameWinCheck());
 }
 
 function equalsIgnoringCase(text, other) { 
