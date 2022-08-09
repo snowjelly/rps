@@ -15,25 +15,35 @@ let result = "";
 let rock = "";
 let paper = "";
 let scissors = "";
-let play = false;
+let play = true;
 
 const invalidString = "Invalid string. Please refresh the page and enter 'rock', 'paper', or 'scissors'";
 
 
-//loop to allow replaying the game
-while (play) {
-    gameCount = parseInt(prompt("How many rounds would you like to play?"));
-    game(gameCount);
-    totalGames++;
-    play = equalsIgnoringCase(prompt("Would you like to play again?: Y/N"), "Y")
-    if (play) {
-        play = true;
-    } else {
-        play = false;
-        getRoundsPlayed();
-        console.log("Refresh the page to play again")
-    }
+
+const playerChoice = (e) => {
+  if (e.target.dataset.choice === "rock") {
+    return "rock";
+  } else if (e.target.dataset.choice === "paper") {
+    return "paper";
+  } else if (e.target.dataset.choice === "scissors") {
+    return "scissors";
+  } else if (e.target.dataset.choice !== typeof "string") {
+    return "waiting for player choice";
+  } else {
+    return "ERROR";
+  }
+  
 }
+
+while (play === false) {
+  
+}
+
+const buttons = document.querySelectorAll('#btn');
+buttons.forEach(button => button.addEventListener('click', playerChoice));
+
+
 
 function gameWinCheck() {
     if (playerWins > computerWins && playerWins > ties) {
@@ -46,25 +56,9 @@ function gameWinCheck() {
 }
 
 // future additions could include making a leaderboard, UI, and then eventually online multiplayer.
-function game(gameCount) { 
-    for (let i = 0; i < gameCount; i++) {
-        playerSelection = prompt("Enter 'rock', 'paper', or 'scissors'");
-        rock = equalsIgnoringCase(playerSelection, 'ROCK');
-        paper = equalsIgnoringCase(playerSelection, 'PAPER');
-        scissors = equalsIgnoringCase(playerSelection, 'SCISSORS');
-
-        if (rock || paper || scissors) {
-            computerSelection = getComputerChoice();
-
-            console.log(playRound(playerSelection, computerSelection));
-            //console.log(playRound('rock', 'rock'));
-        } else {
-            return console.log(invalidString);
-        }
-
-        totalRounds++;
-    }
-    console.log("In the " + gameCount + " round(s) you played. You won " + playerWins + ", tied " + ties + ", and lost " + computerWins);
+function game() { 
+    totalRounds++;
+    console.log("In the " + totalRounds + " round(s) you played. You won " + playerWins + ", tied " + ties + ", and lost " + computerWins);
     console.log("Highest winstreak: " + winStreak + " Highest losestreak: " + loseStreak + " Highest tiestreak: " + tieStreak);
     console.log(gameWinCheck());
 }
@@ -124,9 +118,9 @@ function checkStreak() { //there was a bug where streaks would say 0 after clear
             }
 }
 
-function playRound(playerSelection, computerSelection) {
+function playRound(computerSelection) {
     //Game logic
-    if (rock) { //if player chooses rock
+    if (playerChoice === "rock") { //if player chooses rock
         if (computerSelection === 'rock') {
             prevResult = result;
             ties++;
@@ -149,7 +143,7 @@ function playRound(playerSelection, computerSelection) {
             return "The computer chose " + computerSelection + ". You " + result + ". You now have a " + result + " streak of " + currentStreak;
         }
     }
-    else if (paper) { //if player chooses paper
+    else if (playerChoice === "paper") { //if player chooses paper
         if (computerSelection === 'rock') {
             prevResult = result;
             playerWins++;
@@ -172,7 +166,7 @@ function playRound(playerSelection, computerSelection) {
             return "The computer chose " + computerSelection + ". You " + result + ". You now have a " + result + " streak of " + currentStreak;
         }
     }
-    else if (scissors) { //if player chooses scissors
+    else if (playerChoice === "scissors") { //if player chooses scissors
         if (computerSelection === 'rock') {
             prevResult = result;
             computerWins++;
