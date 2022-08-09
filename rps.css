@@ -33,7 +33,6 @@
   display: flex;
   flex-direction: column;
   color: whitesmoke;
-  
 }
 
 .prompt button {
@@ -42,7 +41,7 @@
 
 .buttons {
   display: flex;
-  justify-content: space-evenly;
+  
   
 }
 
@@ -50,6 +49,6 @@
   font-size: 2rem;
 }
 
-.hidden {
-  color: #121212;
+.scoreboard {
+  color: whitesmoke;
 }

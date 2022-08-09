@@ -22,6 +22,10 @@ const scissorsBtn = document.createElement('button');
 const promptText = document.querySelector('.prompt h3');
 const promptBtn = document.querySelector('.prompt button');
 const promptParent = document.querySelector('.prompt');
+const scoreboardParent = document.querySelector('.scoreboard');
+const scoreboard = document.createElement('h4');
+const streaks = document.createElement('h4');
+const score = document.createElement('h4');
 
 
 
@@ -61,11 +65,25 @@ const gameStart = (e) => {
   }
 }
 
-const gameEnd = () => { //removes choice buttons, displays result, and re-adds the start button
+const gameEnd = () => { 
+  totalRounds++;
+  
+  //remove choice buttons
   buttonDiv.removeChild(rockBtn);
   buttonDiv.removeChild(paperBtn);
   buttonDiv.removeChild(scissorsBtn);
-  promptText.textContent = playRound(getComputerChoice()) + ". Would you like to play again?";
+  
+  //display result
+  promptText.textContent = playRound(getComputerChoice());
+  
+  //display scoreboard
+  score.textContent = ('Scoreboard: ');
+  scoreboardParent.appendChild(score);
+  scoreboard.textContent = '|Rounds = ' + totalRounds + '|Wins = ' + playerWins + '|Ties = ' + ties + '| Losses ' + computerWins + '|';
+  scoreboardParent.appendChild(scoreboard);
+  streaks.textContent = "Highest winstreak " + winStreak + " Highest losestreak: " + loseStreak + " Highest tiestreak: " + tieStreak;
+  scoreboardParent.appendChild(streaks);
+  //re-add game start button
   promptParent.appendChild(promptBtn);
   addStartButtonListener();
 }
