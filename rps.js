@@ -22,6 +22,8 @@ const rockBtn = document.createElement('button');
 const paperBtn = document.createElement('button');
 const scissorsBtn = document.createElement('button');
 const promptText = document.querySelector('.prompt h3');
+const promptBtn = document.querySelector('.prompt button');
+const promptParent = document.querySelector('.prompt');
 
 const invalidString = "Invalid string. Please refresh the page and enter 'rock', 'paper', or 'scissors'";
 
@@ -31,6 +33,8 @@ const invalidString = "Invalid string. Please refresh the page and enter 'rock',
 const gameStart = (e) => {
   if (e.target.dataset.choice === "start") {
     // change css to reflect game start
+    // i know ways I could simplfy the code but it seems
+    // like an unnecessary use of time for now.
   
       rockBtn.setAttribute('id', 'btn');
       paperBtn.setAttribute('id', 'btn');
@@ -44,15 +48,11 @@ const gameStart = (e) => {
       paperBtn.textContent = 'Paper'
       scissorsBtn.textContent = 'Scissors'
 
-      
       promptText.textContent = "Make your choice";
-
-      const promptBtn = document.querySelector('.prompt button');
       
-      const removePromptBtn = document.querySelector('.prompt');
-      removePromptBtn.removeChild(promptBtn);
+      promptParent.removeChild(promptBtn);
   
-  
+
       buttonDiv.appendChild(rockBtn);
       buttonDiv.appendChild(paperBtn);
       buttonDiv.appendChild(scissorsBtn);
@@ -69,29 +69,32 @@ const playerChoice = (e) => {
   if (e.target.dataset.choice === "rock") {
     play = true;
     playerSelection = "rock";
-    console.log(playRound(getComputerChoice()));
     buttonDiv.removeChild(rockBtn);
     buttonDiv.removeChild(paperBtn);
     buttonDiv.removeChild(scissorsBtn);
-    promptText.textContent = "Would you like to play again?";
+    promptText.textContent = playRound(getComputerChoice()) + ". Would you like to play again?";
+    promptParent.appendChild(promptBtn);
+    addStartButtonListener();
     return console.log(playerSelection);
   } else if (e.target.dataset.choice === "paper") {
     play = true;
     playerSelection = "paper";
-    console.log(playRound(getComputerChoice()));
     buttonDiv.removeChild(rockBtn);
     buttonDiv.removeChild(paperBtn);
     buttonDiv.removeChild(scissorsBtn);
-    promptText.textContent = "Would you like to play again?";
+    promptText.textContent = playRound(getComputerChoice()) + ". Would you like to play again?";
+    promptParent.appendChild(promptBtn);
+    addStartButtonListener();
     return console.log(playerSelection);
   } else if (e.target.dataset.choice === "scissors") {
     play = true;
     playerSelection = "scissors";
-    console.log(playRound(getComputerChoice()));
     buttonDiv.removeChild(rockBtn);
     buttonDiv.removeChild(paperBtn);
     buttonDiv.removeChild(scissorsBtn);
-    promptText.textContent = "Would you like to play again?";
+    promptText.textContent = playRound(getComputerChoice()) + ". Would you like to play again?";
+    promptParent.appendChild(promptBtn);
+    addStartButtonListener();
     return console.log(playerSelection);
   } else {
     return console.log("ERROR");
