@@ -10,14 +10,40 @@
 }
 
 .page-header {
-  background-color: whitesmoke;
-  border: 3px solid #121212;
+  display: flex;
+  color: whitesmoke;
+  justify-content: center;
+  font-size: 2rem;
 }
 
 .page-main {
   flex-grow: 1;
+  display: flex;
+  justify-content: center;
 }
 
-.page-footer {
+.content {
+  display: flex;
+  flex-direction: column;
+  font-size: 2rem;
+}
 
+.prompt {
+  display: flex;
+  flex-direction: column;
+  color: whitesmoke;
+}
+
+.prompt button {
+  font-size: 2rem;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 2rem;
+}
+
+.buttons > * {
+  font-size: 2rem;
 }
