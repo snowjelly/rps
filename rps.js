@@ -15,36 +15,44 @@ let result = "";
 let rock = "";
 let paper = "";
 let scissors = "";
-let play = true;
+let play = false;
 
 const invalidString = "Invalid string. Please refresh the page and enter 'rock', 'paper', or 'scissors'";
 
 
-
 const gameStart = (e) => {
   if (e.target.dataset.choice === "start") {
+    play = true;
     // change css to reflect game start
-    // fade out gamestart
-    // fade in rps buttons
-    const buttonDiv = document.querySelector('buttons');
-    const rockBtn = document.createElement('button');
-    const paperBtn = document.createElement('button');
-    const scissorsBtn = document.createElement('button');
+      const buttonDiv = document.querySelector('.buttons');
+      const rockBtn = document.createElement('button');
+      const paperBtn = document.createElement('button');
+      const scissorsBtn = document.createElement('button');
+  
+      rockBtn.setAttribute('id', 'btn');
+      paperBtn.setAttribute('id', 'btn');
+      scissorsBtn.setAttribute('id', 'btn');
+  
+      rockBtn.setAttribute('data-choice', 'rock');
+      paperBtn.setAttribute('data-choice', 'paper');
+      scissorsBtn.setAttribute('data-choice', 'scissors');
+  
+      rockBtn.textContent = 'Rock'
+      paperBtn.textContent = 'Paper'
+      scissorsBtn.textContent = 'Scissors'
 
-    rockBtn.setAttribute('id', 'btn');
-    paperBtn.setAttribute('id', 'btn');
-    scissorsBtn.setAttribute('id', 'btn');
+      const prompt = document.querySelector('.prompt h3');
+      prompt.textContent = "Make your choice";
 
-    rockBtn.setAttribute('data-choice', 'rock');
-    paperBtn.setAttribute('data-choice', 'paper');
-    scissorsBtn.setAttribute('data-choice', 'scissors');
+      const promptBtn = document.querySelector('.prompt button');
+      promptBtn.toggleAttribute('hidden');
+  
+  
+      buttonDiv.appendChild(rockBtn);
+      buttonDiv.appendChild(paperBtn);
+      buttonDiv.appendChild(scissorsBtn);
 
-
-    buttonDiv.appendChild(rockBtn);
-    buttonDiv.appendChild(paperBtn);
-    buttonDiv.appendChild(scissorsBtn);
-
-
+      addButtonListeners();
     return console.log(true);
   } else {
     return false;
@@ -53,16 +61,30 @@ const gameStart = (e) => {
 
 const playerChoice = (e) => {
   if (e.target.dataset.choice === "rock") {
-    return "rock";
+    return console.log("rock");
   } else if (e.target.dataset.choice === "paper") {
-    return "paper";
+    return console.log("paper");
   } else if (e.target.dataset.choice === "scissors") {
-    return "scissors";
+    return console.log("scissors");
+  } else {
+    return console.log("ERROR");
   }
 }
 
-const buttons = document.querySelectorAll('#btn');
-buttons.forEach(button => button.addEventListener('click', gameStart));
+const startButton = document.querySelector('.prompt button');
+startButton.addEventListener('click', gameStart, {
+  once: true
+});
+
+
+const addButtonListeners = () => {
+  const buttons = document.querySelectorAll('#btn');
+  buttons.forEach(button => button.addEventListener('click', playerChoice, {
+    once: true
+  }));
+}
+
+
 
 
 
