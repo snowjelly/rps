@@ -22,7 +22,6 @@ const invalidString = "Invalid string. Please refresh the page and enter 'rock',
 
 const gameStart = (e) => {
   if (e.target.dataset.choice === "start") {
-    play = true;
     // change css to reflect game start
       const buttonDiv = document.querySelector('.buttons');
       const rockBtn = document.createElement('button');
@@ -60,88 +59,28 @@ const gameStart = (e) => {
     return console.log(false);
   }
 }
-computerSelection = getComputerChoice();
 
 const playerChoice = (e) => {
   if (e.target.dataset.choice === "rock") {
-    return console.log("rock");
+    play = true;
+    playerSelection = "rock";
+    console.log(playRound(getComputerChoice()));
+    return console.log(playerSelection);
   } else if (e.target.dataset.choice === "paper") {
-    return console.log("paper");
+    play = true;
+    playerSelection = "paper";
+    console.log(playRound(getComputerChoice()));
+    return console.log(playerSelection);
   } else if (e.target.dataset.choice === "scissors") {
-    return console.log("scissors");
+    play = true;
+    playerSelection = "scissors";
+    console.log(playRound(getComputerChoice()));
+    return console.log(playerSelection);
   } else {
     return console.log("ERROR");
   }
 }
-if (playerChoice === "rock") { //if player chooses rock
-  if (computerSelection === 'rock') {
-      prevResult = result;
-      ties++;
-      result = "tie";
-      checkStreak();
-      return "The computer chose " + computerSelection + ". You " + result + ". You now have a " + result + " streak of " + currentStreak;
-  }
-  if (computerSelection === 'paper') {
-      prevResult = result;
-      computerWins++;
-      result = "lose"
-      checkStreak();
-      return "The computer chose " + computerSelection + ". You " + result + ". You now have a " + result + " streak of " + currentStreak;
-  }
-  if (computerSelection === 'scissors') {
-      prevResult = result;
-      playerWins++;
-      result = "win";
-      checkStreak();
-      return "The computer chose " + computerSelection + ". You " + result + ". You now have a " + result + " streak of " + currentStreak;
-  }
-}
-else if (playerChoice === "paper") { //if player chooses paper
-  if (computerSelection === 'rock') {
-      prevResult = result;
-      playerWins++;
-      result = "win";
-      checkStreak();
-      return "The computer chose " + computerSelection + ". You " + result + ". You now have a " + result + " streak of " + currentStreak;
-  }
-  if (computerSelection === 'paper') {
-      prevResult = result;
-      ties++;
-      result = "tie";
-      checkStreak();
-      return "The computer chose " + computerSelection + ". You " + result + ". You now have a " + result + " streak of " + currentStreak;
-  }
-  if (computerSelection === 'scissors') {
-      prevResult = result;
-      computerWins++;
-      result = "lose"
-      checkStreak();
-      return "The computer chose " + computerSelection + ". You " + result + ". You now have a " + result + " streak of " + currentStreak;
-  }
-}
-else if (playerChoice === "scissors") { //if player chooses scissors
-  if (computerSelection === 'rock') {
-      prevResult = result;
-      computerWins++;
-      result = "lose"
-      checkStreak();
-      return "The computer chose " + computerSelection + ". You " + result + ". You now have a " + result + " streak of " + currentStreak;
-  }
-  if (computerSelection === 'paper') {
-      prevResult = result;
-      playerWins++;
-      result = "win";
-      checkStreak();
-      return "The computer chose " + computerSelection + ". You " + result + ". You now have a " + result + " streak of " + currentStreak;
-  }
-  if (computerSelection === 'scissors') {
-      prevResult = result;
-      ties++;
-      result = "tie";
-      checkStreak();
-      return "The computer chose " + computerSelection + ". You " + result + ". You now have a " + result + " streak of " + currentStreak;
-  }
-}
+
 const startButton = document.querySelector('.prompt button');
 startButton.addEventListener('click', gameStart, {
   once: true
@@ -236,7 +175,7 @@ function checkStreak() { //there was a bug where streaks would say 0 after clear
 
 function playRound(computerSelection) {
     //Game logic
-    if (playerChoice === "rock") { //if player chooses rock
+    if (playerSelection === "rock") { //if player chooses rock
         if (computerSelection === 'rock') {
             prevResult = result;
             ties++;
@@ -259,7 +198,7 @@ function playRound(computerSelection) {
             return "The computer chose " + computerSelection + ". You " + result + ". You now have a " + result + " streak of " + currentStreak;
         }
     }
-    else if (playerChoice === "paper") { //if player chooses paper
+    else if (playerSelection === "paper") { //if player chooses paper
         if (computerSelection === 'rock') {
             prevResult = result;
             playerWins++;
@@ -282,7 +221,7 @@ function playRound(computerSelection) {
             return "The computer chose " + computerSelection + ". You " + result + ". You now have a " + result + " streak of " + currentStreak;
         }
     }
-    else if (playerChoice === "scissors") { //if player chooses scissors
+    else if (playerSelection === "scissors") { //if player chooses scissors
         if (computerSelection === 'rock') {
             prevResult = result;
             computerWins++;
@@ -310,3 +249,4 @@ function playRound(computerSelection) {
 function getRoundsPlayed() {
 return console.log("You played " + totalRounds + " rounds and " + totalGames + " game(s) during this session.")
 }
+
