@@ -21,6 +21,36 @@ const invalidString = "Invalid string. Please refresh the page and enter 'rock',
 
 
 
+const gameStart = (e) => {
+  if (e.target.dataset.choice === "start") {
+    // change css to reflect game start
+    // fade out gamestart
+    // fade in rps buttons
+    const buttonDiv = document.querySelector('buttons');
+    const rockBtn = document.createElement('button');
+    const paperBtn = document.createElement('button');
+    const scissorsBtn = document.createElement('button');
+
+    rockBtn.setAttribute('id', 'btn');
+    paperBtn.setAttribute('id', 'btn');
+    scissorsBtn.setAttribute('id', 'btn');
+
+    rockBtn.setAttribute('data-choice', 'rock');
+    paperBtn.setAttribute('data-choice', 'paper');
+    scissorsBtn.setAttribute('data-choice', 'scissors');
+
+
+    buttonDiv.appendChild(rockBtn);
+    buttonDiv.appendChild(paperBtn);
+    buttonDiv.appendChild(scissorsBtn);
+
+
+    return console.log(true);
+  } else {
+    return false;
+  }
+}
+
 const playerChoice = (e) => {
   if (e.target.dataset.choice === "rock") {
     return "rock";
@@ -28,20 +58,11 @@ const playerChoice = (e) => {
     return "paper";
   } else if (e.target.dataset.choice === "scissors") {
     return "scissors";
-  } else if (e.target.dataset.choice !== typeof "string") {
-    return "waiting for player choice";
-  } else {
-    return "ERROR";
   }
-  
-}
-
-while (play === false) {
-  
 }
 
 const buttons = document.querySelectorAll('#btn');
-buttons.forEach(button => button.addEventListener('click', playerChoice));
+buttons.forEach(button => button.addEventListener('click', gameStart));
 
 
 
