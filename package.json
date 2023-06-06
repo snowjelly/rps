@@ -1,0 +1,26 @@
+{
+  "name": "rps",
+  "version": "1.0.0",
+  "description": "A simple rock paper scissors program written in Javascript",
+  "main": "rps.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack build",
+    "watch": "webpack watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/snowjelly/rps.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/snowjelly/rps/issues"
+  },
+  "homepage": "https://github.com/snowjelly/rps#readme",
+  "devDependencies": {
+    "webpack": "^5.85.0",
+    "webpack-cli": "^5.1.3"
+  }
+}
