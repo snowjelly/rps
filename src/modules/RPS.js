@@ -1,29 +1,25 @@
 export default class RPS {
     static playerSelection(e) {
-        RPS.result(e.target.id);
+        const selection = e.target.id;
+
+        if (selection === 'rock') {
+            console.log(RPS.result(0, RPS.computerSelection()));
+        }
+        else if (selection === 'paper') {
+            console.log(RPS.result(1, RPS.computerSelection()));
+        }
+        else if (selection === 'scissors') {
+            console.log(RPS.result(2, RPS.computerSelection()));
+        }
     }
 
     static computerSelection() {
-        const selection = Math.floor(Math.random() * 3);
-
-        if (selection === 0) {
-            return 'rock';
-        }
-        else if (selection === 1) {
-            return 'paper';
-        }
-        else if (selection === 2) {
-            return 'scissors';
-        }
+        return Math.floor(Math.random() * 3);
     }
 
-    static result(playerSelection) {
-        const computerSelection = RPS.computerSelection();
-
-        if (playerSelection === computerSelection) {
-            console.log('tie');
-            console.log('p:' + playerSelection);
-            console.log('cpu:' + computerSelection);
-        }
+    static result(playerSelection, computerSelection) {
+        if ((playerSelection + 1) % 3 === computerSelection) return "CPU won";
+        else if (playerSelection === computerSelection) return "It is a draw";
+        else return "You win";
     }
 }
